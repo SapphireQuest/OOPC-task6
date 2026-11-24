@@ -20,3 +20,8 @@ Matrix::Data_Block::~Data_Block()
     delete[] data[0];
     delete[] data;
 }
+
+Matrix::Matrix(int rows, int columns)
+{
+    
+}
