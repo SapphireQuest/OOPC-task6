@@ -11,7 +11,7 @@ class Matrix
             int columns;
             int refcount;
 
-            Data_Block(int rows, int columns);
+            Data_Block(int rows, int columns, double value);
 
             ~Data_Block();
         private:
@@ -21,10 +21,10 @@ class Matrix
     };
     
     Data_Block* block;
-    
+    bool isSizeValid(int rows, int columns) const; 
+
     public:
-        Matrix(int rows, int columns);
+        Matrix(int rows, int columns, double value = 0);
+        Matrix(const Matrix& m);
         ~Matrix();
-
-
 };
