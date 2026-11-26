@@ -40,7 +40,7 @@ Matrix::~Matrix()
     this->release(); 
 }
 
-bool Matrix::isSizeValid(int rows, int columns) const
+bool Matrix::isSizeValid(int rows, int columns) 
 {
     return rows > 0 && columns > 0;
 }
