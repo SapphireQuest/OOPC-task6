@@ -27,4 +27,6 @@ class Matrix
         Matrix(int rows, int columns, double value = 0);
         Matrix(const Matrix& m);
         ~Matrix();
+        Matrix& operator=(const Matrix& m);
+        void release();
 };

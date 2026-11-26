@@ -14,7 +14,10 @@ Matrix::Data_Block::Data_Block(int rows, int columns, double value)
         data[i] = data[i-1] + columns;
     }
 
-    //TODO writing value into block 
+    for(int i = 0; i < rows*columns; i++)
+    {
+        data[0][i] = value;
+    }
 }       
 
 Matrix::Data_Block::~Data_Block()
@@ -34,8 +37,7 @@ Matrix::Matrix(int rows, int columns, double value)
 
 Matrix::~Matrix()
 {
-    
-    delete block;
+    this->release(); 
 }
 
 bool Matrix::isSizeValid(int rows, int columns) const
@@ -46,6 +48,23 @@ bool Matrix::isSizeValid(int rows, int columns) const
 
 Matrix::Matrix(const Matrix& m)
 {
-    m.block->refcount ++;
+    m.block->refcount++;
     this->block = m.block;
+}
+
+Matrix& Matrix::operator=(const Matrix& m)
+{
+    m.block->refcount++;
+    this->release();
+    this->block = m.block;
+    return *this;
+}
+
+void Matrix::release()
+{
+    block->refcount--;
+    if(block->refcount == 0)
+    {
+        delete block;
+    }
 }
